@@ -198,7 +198,7 @@ public:
 		// Start of 3D Stuff
 
 		olc::GFX3D::mat4x4 matRotateX = olc::GFX3D::Math::Mat_MakeRotationX(fTheta);
-		olc::GFX3D::mat4x4 matRotateZ = olc::GFX3D::Math::Mat_MakeRotationZ(fTheta / 3.0f);
+		olc::GFX3D::mat4x4 matRotateZ = olc::GFX3D::Math::Mat_MakeRotationZ(fTheta * 0.5f);
 		//olc::GFX3D::mat4x4 matWorld = olc::GFX3D::Math::Mat_MultiplyMatrix(matRotateX, matRotateZ);
 
 		olc::GFX3D::mat4x4 matTrans;
@@ -217,7 +217,8 @@ public:
 		olc::GFX3D::mat4x4 matCamera = olc::GFX3D::Math::Mat_PointAt(vCamera, vTarget, vUp);
 		renderer.SetCamera(vCamera, vTarget, vUp);
 
-		olc::GFX3D::vec3d vForward = olc::GFX3D::Math::Vec_Add(vCamera, vLookDir);
+
+		olc::GFX3D::vec3d vForward = olc::GFX3D::Math::Vec_Mul(vLookDir, 8.0f * fElapsedTime);
 
 		renderer.SetCamera(vCamera, vTarget, vUp);
 
@@ -274,25 +275,25 @@ public:
 			// Moving Left
 			if (GetTouchX(0) > leftCenterScreenPos.x)
 			{
-				//fYaw += 1.0f * fElapsedTime;
+				fYaw += 1.0f * fElapsedTime;
 			}
 
 			// Moving Right
 			if (GetTouchX(0) < leftCenterScreenPos.x)
 			{
-				//fYaw -= 1.0f * fElapsedTime;
+				fYaw -= 1.0f * fElapsedTime;
 			}
 
-			// Moving Up
+			// Moving Forwards
 			if (GetTouchY(0) < leftCenterScreenPos.y)
 			{
-				//vCamera = olc::GFX3D::Math::Vec_Add(vCamera, vForward);
+				vCamera = olc::GFX3D::Math::Vec_Add(vCamera, vForward);
 			}
 
-			// Moving Down
+			// Moving Backwards
 			if (GetTouchY(0) > leftCenterScreenPos.y)
 			{
-				///vCamera = olc::GFX3D::Math::Vec_Sub(vCamera, vForward);
+				vCamera = olc::GFX3D::Math::Vec_Sub(vCamera, vForward);
 			}
 
 
@@ -329,7 +330,7 @@ public:
 			// Moving Down
 			if (GetTouchY(1) > rightCenterScreenPos.y)
 			{
-				vCamera.y -= 8.0f * fElapsedTime;	// Travel Downwards
+				//vCamera.y -= 8.0f * fElapsedTime;	// Travel Downwards
 			}
 
 		}
