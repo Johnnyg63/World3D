@@ -129,6 +129,8 @@
     <Content Include="app\src\main\assets\images\City_Roads1_mip0.png" />
     <Content Include="app\src\main\assets\images\dirtblock.png" />
     <Content Include="app\src\main\assets\images\olcpgemobilelogo.png" />
+    <Content Include="app\src\main\assets\images\TestLandScape.jpg" />
+    <Content Include="app\src\main\assets\images\TestLandScape_small.png" />
     <Content Include="app\src\main\assets\maps\example1.city" />
     <Content Include="app\src\main\assets\objectfiles\mountains.obj" />
     <Content Include="app\src\main\assets\objectfiles\unitcube.obj" />

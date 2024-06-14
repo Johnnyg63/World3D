@@ -108,8 +108,8 @@ public:
 #if defined(__ANDROID__)
 		// You can save files in the android Internal app storage
 
-		fileMountains = (std::string)app_GetInternalAppStorage() + "/objectfiles/mountains.obj";
-		olc::filehandler->ExtractFileFromAssets("objectfiles/mountains.obj", fileMountains);
+		fileMountains = (std::string)app_GetInternalAppStorage() + "/objectfiles/unitcube.obj";
+		olc::filehandler->ExtractFileFromAssets("objectfiles/unitcube.obj", fileMountains);
 #endif
 #if defined(__APPLE__)
 		// For iOS the internal app storage is read only, therefore we use External App Storage
@@ -121,19 +121,9 @@ public:
 		//cube.LoadOBJFile("/unitcube.obj", olc::FileHandler::INTERNAL);
 		olc::GFX3D::ConfigureDisplay();
 
-		cubeTex = new olc::Sprite("images/dirtblock.png");
+		cubeTex = new olc::Sprite("images/TestLandScape_small.png");
 
 		renderer.SetProjection(270.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f, 0.0f, 0.0f, ScreenWidth(), ScreenHeight());
-
-		std::string sAssetFile = "images/car_top.png";
-		std::string sStorageFoler(app_GetPublicAppStorage()); /* Store it in --YOURPHONE--/Phone/Android/obb/com.olcPEGMob3DGraphicTest */
-		std::string sStorageFile = sStorageFoler + "/car_top.png";
-
-		if (app_ExtractFileFromAssets(sAssetFile, sStorageFile) == olc::rcode::OK)
-		{
-			// Test point
-			int testPoint = 1;
-		}
 
 		return true;
 	}
@@ -230,11 +220,16 @@ public:
 		renderer.SetTransform(matWorld);
 
 
-		renderer.SetLightSource(1, olc::GFX3D::LIGHTS::LIGHT_POINT, olc::DARK_GREEN, vSun);
+		//renderer.SetLightSource(1, olc::GFX3D::LIGHTS::LIGHT_POINT, olc::PixelF(128.0f, 128.0f, 128.0f, 0.5f), vSun);
 
 		renderer.SetTexture(cubeTex);
 		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_LIGHTS);
+		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
+		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_WIRE);
+		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_DEPTH);
 		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
+		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_WIRE);
+		
 
 
 		nStep = 10;

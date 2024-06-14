@@ -215,8 +215,9 @@ namespace olc
 			olc::GFX3D::mat4x4 matProj;
 			olc::GFX3D::mat4x4 matView;
 			olc::GFX3D::mat4x4 matWorld;
-			olc::Sprite* sprTexture;
-			//olc::GFX3D::MipMap *sprMipMap;
+			olc::Sprite* sprTexture = nullptr; // John Galvin: Ensures no errors when sampling
+			olc::Decal* decTexture = nullptr;
+			//olc::GFX3D::MipMap *sprMipMap;xqde0
 			//bool bUseMipMap;
 			float fViewX;
 			float fViewY;
@@ -660,12 +661,19 @@ namespace olc
 	{
 		// NOTE: olc Pixel Game Engine Mobile will draw this triangle using SIMD_NEON (ARM) || SIMD_SSE (x86)
 		pge->FillTriangle((int32_t)tri.p[0].x, (int32_t)tri.p[0].y, (int32_t)tri.p[1].x, (int32_t)tri.p[1].y, (int32_t)tri.p[2].x, (int32_t)tri.p[2].y, tri.col[0]);
+
 	}
 
 	void GFX3D::DrawTriangleWire(olc::GFX3D::triangle& tri, olc::Pixel col)
 	{
-		pge->DrawTriangle((int32_t)tri.p[0].x, (int32_t)tri.p[0].y, (int32_t)tri.p[1].x, (int32_t)tri.p[1].y, (int32_t)tri.p[2].x, (int32_t)tri.p[2].y, col);
+		
+		pge->DrawTriangle((int32_t)tri.p[0].x, (int32_t)tri.p[0].y, 
+						  (int32_t)tri.p[1].x, (int32_t)tri.p[1].y, 
+						  (int32_t)tri.p[2].x, (int32_t)tri.p[2].y, col);
+
+
 	}
+
 
 	void GFX3D::TexturedTriangle(int x1, int y1, float u1, float v1, float w1,
 		int x2, int y2, float u2, float v2, float w2,
@@ -1002,6 +1010,7 @@ namespace olc
 	void GFX3D::PipeLine::SetTexture(olc::Sprite* texture)
 	{
 		sprTexture = texture;
+		decTexture = new Decal(sprTexture);
 		//bUseMipMap = false;
 	}
 
@@ -1123,10 +1132,7 @@ namespace olc
 		int nTriangleDrawnCount = 0;
 
 		// Process Triangles
-		//for (auto &tri : triangles)
-//		omp_set_dynamic(0);
-//		omp_set_num_threads(4);
-//#pragma omp parallel for schedule(static)
+
 		for (int tx = nOffset; tx < nOffset + nCount; tx++)
 		{
 			GFX3D::triangle& tri = triangles[tx];

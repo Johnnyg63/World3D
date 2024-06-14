@@ -54,7 +54,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <AndroidAPILevel>android-29</AndroidAPILevel>
+    <AndroidAPILevel>android-31</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -94,9 +94,9 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
-	<ImportGroup Label="Shared">
-		<Import Project="..\World3D.Shared\World3D.Shared.vcxitems" Label="Shared" />
-	</ImportGroup>
+  <ImportGroup Label="Shared">
+    <Import Project="..\World3D.Shared\World3D.Shared.vcxitems" Label="Shared" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -135,7 +135,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
-	  <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);GLESv2;GLESv3;EGL;OpenSLES;</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);GLESv2;GLESv3;EGL;OpenSLES;</LibraryDependencies>
       <AdditionalOptions>-lm</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -159,7 +159,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
-	  <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);GLESv2;GLESv3;EGL;OpenSLES;</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);GLESv2;GLESv3;EGL;OpenSLES;</LibraryDependencies>
       <AdditionalOptions>-lm</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
