@@ -62,9 +62,9 @@ public:
 	olc::GFX3D::PipeLine renderer;
 
 	olc::GFX3D::vec3d vUp = { 0,1,0 };
-	olc::GFX3D::vec3d vCamera = { 0,0,-4 };
+	olc::GFX3D::vec3d vCamera = { 15, 15,-4 };
 	olc::GFX3D::vec3d vLookDir = { 0,0,1 };
-	olc::GFX3D::vec3d vSun = { 4, 4 ,4 };
+	olc::GFX3D::vec3d vSun = {50, 50 , 20};
 
 	float fYaw = 0.0f;		// FPS Camera rotation in XZ plane
 	float fTheta = 0.0f;	// Spins World transform
@@ -229,23 +229,13 @@ public:
 
 		renderer.SetTransform(matWorld);
 
-		//renderer.SetTexture(cubeTex);
-		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
 
-		renderer.SetLightSource(5, 5, olc::DARK_GREEN, vCamera);
+		renderer.SetLightSource(1, olc::GFX3D::LIGHTS::LIGHT_POINT, olc::DARK_GREEN, vSun);
 
 		renderer.SetTexture(cubeTex);
-		renderer.Render(cube.tris);
+		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_LIGHTS);
+		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
 
-		//renderer.Render(cube.tris);
-
-		sMessage = sAppName + " - Camera x: " + std::to_string(vCamera.x);
-		vecMessages.push_back(sMessage);
-
-		//vLookTarget
-
-		sMessage = sAppName + " - vLookTarget x: " + std::to_string(vTarget.x);
-		vecMessages.push_back(sMessage);
 
 		nStep = 10;
 		for (auto& s : vecMessages)
@@ -340,8 +330,6 @@ public:
 			}
 
 		}
-
-		//fTheta += fElapsedTime;
 
 		return true;
 	}
