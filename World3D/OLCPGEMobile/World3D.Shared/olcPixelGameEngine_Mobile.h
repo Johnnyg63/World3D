@@ -1710,7 +1710,7 @@ namespace olc {
         /// <param name="a">vi2d {x, y}</param>
         /// <param name="p">Replace with pixel</param>
         /// <returns>Success: true, Fail: false</returns>
-        bool  SetPixel(const olc::vi2d& a, Pixel p);
+        bool SetPixel(const olc::vi2d& a, Pixel p);
 
         /// <summary>
         /// Sample a pixel at location (X, Y)
@@ -2021,13 +2021,13 @@ namespace olc {
     /// </summary>
     struct OSEngineInstance
     {
-        struct android_app* app;	// Allows access to Android OS App
+        struct android_app* app = nullptr;	// Allows access to Android OS App
         int animating = 0;			// Set to 0 when app is pause, else 1
         bool StartPGE = false;		// Set to true when it is safe to start the PGE Engine
         bool LostFocus = false;		// Is set when the app has lost focus but is not paused by the OS
-        EGLDisplay display;			// OpenGLES Display
-        EGLSurface surface;			// OpenGLES Surface
-        EGLContext context;			// OpenGLES Context
+        EGLDisplay display = 0;			// OpenGLES Display
+        EGLSurface surface = 0;			// OpenGLES Surface
+        EGLContext context = 0;			// OpenGLES Context
         int32_t viewWidth = 0;		// Width of the viewable Rectangle
         int32_t viewHeight = 0;		// Height of the viewable Rectangle
         int32_t screenWidth = 0;	// Width of the phone screen
@@ -2035,13 +2035,13 @@ namespace olc {
         void* lastGameState = nullptr;		// A pointer to your save state struct
 
         // Coming Soon....
-        ASensorManager* sensorManager;
+        ASensorManager* sensorManager = nullptr;
 
         /// <summary>
         /// Tuple Vector for os Sensors: { OS Const Type, Pointer to ASenor Struct, sample rate ms}
         /// </summary>
         std::vector<std::tuple<olc::SensorType, const ASensor*, uint32_t>> deviceSensors;
-        ASensorEventQueue* sensorEventQueue;
+        ASensorEventQueue* sensorEventQueue = nullptr;
 
 
     };
@@ -2374,11 +2374,11 @@ namespace olc {
     class PGEX;
 
     // The Static Twins (plus three)
-    static std::unique_ptr<Renderer> renderer;				// Pointer to the renderer (OpenGLES10/20/30)
-    static std::unique_ptr<Platform> platform;				// Pointer to the OS platform (Android, iOS)
-    static std::unique_ptr<SIMDDrawRoutines> simddrawer;	// Pointer to the SIMD Draw functions
-    static std::unique_ptr<FileHandler> filehandler;		// Pointer to the file handler for (Android, iOS)
-    static std::map<size_t, uint8_t> mapKeys;				// Mapped keys vector
+    static std::unique_ptr<Renderer> renderer = nullptr;			// Pointer to the renderer (OpenGLES10/20/30)
+    static std::unique_ptr<Platform> platform = nullptr;			// Pointer to the OS platform (Android, iOS)
+    static std::unique_ptr<SIMDDrawRoutines> simddrawer = nullptr;	// Pointer to the SIMD Draw functions
+    static std::unique_ptr<FileHandler> filehandler = nullptr;		// Pointer to the file handler for (Android, iOS)
+    static std::map<size_t, uint8_t> mapKeys;				        // Mapped keys vector
 
     // O------------------------------------------------------------------------------O
     // | olc::PixelGameEngine - The main BASE class for your application              |

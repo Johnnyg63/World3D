@@ -108,8 +108,8 @@ public:
 #if defined(__ANDROID__)
 		// You can save files in the android Internal app storage
 
-		fileMountains = (std::string)app_GetInternalAppStorage() + "/objectfiles/unitcube.obj";
-		olc::filehandler->ExtractFileFromAssets("objectfiles/unitcube.obj", fileMountains);
+		fileMountains = (std::string)app_GetInternalAppStorage() + "/objectfiles/mountains.obj";
+		olc::filehandler->ExtractFileFromAssets("objectfiles/mountains.obj", fileMountains);
 #endif
 #if defined(__APPLE__)
 		// For iOS the internal app storage is read only, therefore we use External App Storage

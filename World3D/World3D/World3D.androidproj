@@ -64,7 +64,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <LaunchActivity>android.app.NativeActivity</LaunchActivity>
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidAPILevel>android-29</AndroidAPILevel>
+    <AndroidAPILevel>android-34</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

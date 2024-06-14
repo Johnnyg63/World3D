@@ -140,10 +140,10 @@ extern "C" {
         int32_t(*onInputEvent)(struct android_app* app, AInputEvent* event);
 
         // The ANativeActivity object instance that this app is running in.
-        ANativeActivity* activity;
+        ANativeActivity* activity = nullptr;
 
         // The current configuration the app is running in.
-        AConfiguration* config;
+        AConfiguration* config = nullptr;
 
         // This is the last instance's saved state, as provided at creation time.
         // It is NULL if there was no state.  You can use this as you need; the
@@ -153,7 +153,7 @@ extern "C" {
         // at which point they will be initialized to NULL and you can malloc your
         // state and place the information here.  In that case the memory will be
         // freed for you later.
-        void* savedState;
+        void* savedState = nullptr;
         size_t savedStateSize;
 
         // The ALooper associated with the app's thread.
@@ -161,10 +161,10 @@ extern "C" {
 
         // When non-NULL, this is the input queue from which the app will
         // receive user input events.
-        AInputQueue* inputQueue;
+        AInputQueue* inputQueue = nullptr;
 
         // When non-NULL, this is the window surface that the app can draw in.
-        ANativeWindow* window;
+        ANativeWindow* window = nullptr;
 
         // Current content rectangle of the window; this is the area where the
         // window's content should be placed to be seen by the user.
@@ -197,8 +197,8 @@ extern "C" {
         int destroyed;      // App is destroyed? Y/N (0/1) ReadOnly
         int redrawNeeded;   // The Windows Rect requires a redraw Y/N (0/1) ReadOnly
 
-        AInputQueue* pendingInputQueue; // Pending Input Queue for Touch, Mouse, Keyboard etc
-        ANativeWindow* pendingWindow;   // Pending Window that is about to be created
+        AInputQueue* pendingInputQueue = nullptr; // Pending Input Queue for Touch, Mouse, Keyboard etc
+        ANativeWindow* pendingWindow = nullptr;   // Pending Window that is about to be created
         ARect pendingContentRect;       // Pending Window Rect that is about to be created
     };
 
