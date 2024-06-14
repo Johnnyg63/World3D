@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="World3D.iOS">
+      <UniqueIdentifier>{1fa80661-ae6e-40f4-8c5a-e8f92807e610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World3D.iOS\Images.xcassets">
+      <UniqueIdentifier>{07e02a96-0472-4918-8455-fcc43fda3316}</UniqueIdentifier>
+      <Extensions>World3D.iOS\Images.xcassets\*</Extensions>
+    </Filter>
+    <Filter Include="World3D.iOS\Images.xcassets\AppIcon.appiconset">
+      <UniqueIdentifier>{4f14c69c-7b31-46f6-ab0a-dee61b5366ed}</UniqueIdentifier>
+      <Extensions>World3D.iOS\Images.xcassets\AppIcon.appiconset\*</Extensions>
+    </Filter>
+    <Filter Include="World3D.iOS\Supporting Files">
+      <UniqueIdentifier>{fad57953-05b8-4df2-a910-4b98037912ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World3D.iOS\Supporting Files\assest">
+      <UniqueIdentifier>{fd37772e-a5f3-47e5-8b61-0692b92b8de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World3D.iOS\Supporting Files\assest\images">
+      <UniqueIdentifier>{89778301-beab-4d84-ade2-f75cbc5d4576}</UniqueIdentifier>
+      <Extensions>World3D.iOS\assets\images\*</Extensions>
+    </Filter>
+    <Filter Include="World3D.iOS\Supporting Files\assest\maps">
+      <UniqueIdentifier>{62c42190-2960-4f7f-bd7c-dda697965b69}</UniqueIdentifier>
+      <Extensions>World3D.iOS\assets\maps\*</Extensions>
+    </Filter>
+    <Filter Include="World3D.iOS\Supporting Files\assest\objectfiles">
+      <UniqueIdentifier>{a87eb7c0-ebac-4e0d-b781-a4d1b8a84055}</UniqueIdentifier>
+      <Extensions>World3D.iOS\assets\objectfiles\*</Extensions>
+    </Filter>
+    <Filter Include="World3D.iOS\Supporting Files\assest\sounds">
+      <UniqueIdentifier>{a0fa87fe-6dc9-4b58-8568-17e21a783236}</UniqueIdentifier>
+      <Extensions>World3D.iOS\assets\sounds\*</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="World3D.iOS\AppDelegate.mm">
+      <Filter>World3D.iOS</Filter>
+    </ClCompile>
+    <ClCompile Include="World3D.iOS\GameViewController.mm">
+      <Filter>World3D.iOS</Filter>
+    </ClCompile>
+    <ClCompile Include="World3D.iOS\ios_native_app_glue.cpp">
+      <Filter>World3D.iOS\Supporting Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World3D.iOS\main.mm">
+      <Filter>World3D.iOS\Supporting Files</Filter>
+    </ClCompile>
+    <ClInclude Include="World3D.iOS\AppDelegate.h">
+      <Filter>World3D.iOS</Filter>
+    </ClInclude>
+    <ClInclude Include="World3D.iOS\GameViewController.h">
+      <Filter>World3D.iOS</Filter>
+    </ClInclude>
+    <ClInclude Include="World3D.iOS\ios_native_app_glue.h">
+      <Filter>World3D.iOS\Supporting Files</Filter>
+    </ClInclude>
+    <Content Include="World3D.iOS\assets\images\car_top.png">
+      <Filter>World3D.iOS\Supporting Files\assest\images</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\images\car_top1.png">
+      <Filter>World3D.iOS\Supporting Files\assest\images</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\images\City_Roads1_mip0.png">
+      <Filter>World3D.iOS\Supporting Files\assest\images</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\images\dirtblock.png">
+      <Filter>World3D.iOS\Supporting Files\assest\images</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\images\north_south_east_west_logo.png">
+      <Filter>World3D.iOS\Supporting Files\assest\images</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\images\olcpgemobilelogo.png">
+      <Filter>World3D.iOS\Supporting Files\assest\images</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\maps\example1.city">
+      <Filter>World3D.iOS\Supporting Files\assest\maps</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\objectfiles\unitcube.obj">
+      <Filter>World3D.iOS\Supporting Files\assest\objectfiles</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\SampleA.wav">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\SampleB.wav">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\SampleC.wav">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\Sample_Test_44100.wav">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\Sample_Test_48000.wav">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\song1.mp3">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\assets\sounds\testmusic.mp3">
+      <Filter>World3D.iOS\Supporting Files\assest\sounds</Filter>
+    </Content>
+    <Content Include="World3D.iOS\Base.lproj\Main.storyboard">
+      <Filter>World3D.iOS</Filter>
+    </Content>
+    <Content Include="World3D.iOS\Images.xcassets\AppIcon.appiconset\Contents.json">
+      <Filter>World3D.iOS\Images.xcassets\AppIcon.appiconset</Filter>
+    </Content>
+    <InfoPlist Include="World3D.iOS\Info.plist">
+      <Filter>World3D.iOS\Supporting Files\assest</Filter>
+    </InfoPlist>
+  </ItemGroup>
+</Project>

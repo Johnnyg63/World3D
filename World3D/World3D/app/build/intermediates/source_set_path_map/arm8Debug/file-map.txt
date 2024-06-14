@@ -1,0 +1,10 @@
+com.World3D.app-arm8-0 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\build\generated\res\pngs\arm8\debug
+com.World3D.app-arm8-1 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\build\generated\res\resValues\arm8\debug
+com.World3D.app-arm8-2 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\build\generated\res\rs\arm8\debug
+com.World3D.app-mergeArm8DebugResources-3 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\build\intermediates\incremental\arm8Debug\mergeArm8DebugResources\merged.dir
+com.World3D.app-mergeArm8DebugResources-4 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\build\intermediates\incremental\arm8Debug\mergeArm8DebugResources\stripped.dir
+com.World3D.app-merged_res-5 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\build\intermediates\merged_res\arm8Debug
+com.World3D.app-arm8-6 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\src\arm8\res
+com.World3D.app-arm8Debug-7 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\src\arm8Debug\res
+com.World3D.app-debug-8 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\src\debug\res
+com.World3D.app-main-9 C:\Users\jgalv\source\repos\World3D\World3D\World3D\app\src\main\res
