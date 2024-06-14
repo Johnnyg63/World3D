@@ -64,6 +64,7 @@ public:
 	olc::GFX3D::vec3d vUp = { 0,1,0 };
 	olc::GFX3D::vec3d vCamera = { 0,0,-4 };
 	olc::GFX3D::vec3d vLookDir = { 0,0,1 };
+	olc::GFX3D::vec3d vSun = { 4, 4 ,4 };
 
 	float fYaw = 0.0f;		// FPS Camera rotation in XZ plane
 	float fTheta = 0.0f;	// Spins World transform
@@ -229,7 +230,12 @@ public:
 		renderer.SetTransform(matWorld);
 
 		//renderer.SetTexture(cubeTex);
-		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_WIRE);
+		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
+
+		renderer.SetLightSource(5, 5, olc::DARK_GREEN, vCamera);
+
+		renderer.SetTexture(cubeTex);
+		renderer.Render(cube.tris);
 
 		//renderer.Render(cube.tris);
 
@@ -330,7 +336,7 @@ public:
 			// Moving Down
 			if (GetTouchY(1) > rightCenterScreenPos.y)
 			{
-				//vCamera.y -= 8.0f * fElapsedTime;	// Travel Downwards
+				vCamera.y -= 8.0f * fElapsedTime;	// Travel Downwards
 			}
 
 		}
