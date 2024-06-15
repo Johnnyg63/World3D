@@ -64,7 +64,7 @@ public:
 	olc::GFX3D::vec3d vUp = { 0,1,0 };
 	olc::GFX3D::vec3d vCamera = { 15, 15,-4 };
 	olc::GFX3D::vec3d vLookDir = { 0,0,1 };
-	olc::GFX3D::vec3d vSun = {50, 50 , 20};
+	olc::GFX3D::vec3d vSun = { -500, -500 , -500 };
 
 	float fYaw = 0.0f;		// FPS Camera rotation in XZ plane
 	float fTheta = 0.0f;	// Spins World transform
@@ -121,7 +121,7 @@ public:
 		//cube.LoadOBJFile("/unitcube.obj", olc::FileHandler::INTERNAL);
 		olc::GFX3D::ConfigureDisplay();
 
-		cubeTex = new olc::Sprite("images/TestLandScape_small.png");
+		cubeTex = new olc::Sprite("images/ground_grass_Small_PNG.png");
 
 		renderer.SetProjection(270.0f, (float)ScreenHeight() / (float)ScreenWidth(), 0.1f, 1000.0f, 0.0f, 0.0f, ScreenWidth(), ScreenHeight());
 
@@ -219,16 +219,19 @@ public:
 
 		renderer.SetTransform(matWorld);
 
+		vSun.x = GetMouseX();
+		vSun.y = GetMouseY();
 
-		//renderer.SetLightSource(1, olc::GFX3D::LIGHTS::LIGHT_POINT, olc::PixelF(128.0f, 128.0f, 128.0f, 0.5f), vSun);
+		renderer.SetLightSource(3, olc::GFX3D::LIGHTS::LIGHT_AMBIENT, olc::YELLOW, vSun);
 
 		renderer.SetTexture(cubeTex);
 		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_LIGHTS);
 		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
 		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_WIRE);
 		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_DEPTH);
-		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED);
-		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_WIRE);
+		renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_TEXTURED | olc::GFX3D::RENDERFLAGS::RENDER_DEPTH | olc::GFX3D::RENDERFLAGS::RENDER_LIGHTS);
+		//renderer.Render(cube.tris, olc::GFX3D::RENDERFLAGS::RENDER_WIRE|olc::GFX3D::RENDERFLAGS::RENDER_DEPTH|olc::GFX3D::RENDER_CULL_CW);
+
 		
 
 
@@ -450,7 +453,7 @@ void android_main(struct android_app* initialstate) {
 		without affecting performance... well it will have a very small affect, it will depend on your pixel size
 		Note: cohesion is currently not working
 	*/
-	demo.Construct(1280, 720, 2, 2, true, false, false);
+	demo.Construct(640, 480, 1, 1, true, false, false);
 
 	demo.Start(); // Lets get the party started
 

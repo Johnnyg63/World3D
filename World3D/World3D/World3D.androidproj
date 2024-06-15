@@ -64,7 +64,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <LaunchActivity>android.app.NativeActivity</LaunchActivity>
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidAPILevel>android-34</AndroidAPILevel>
+    <AndroidAPILevel>android-29</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\proguard-rules.pro" />
+    <Content Include="app\src\main\assets\images\ground_grass_Small_PNG.png" />
     <Content Include="app\src\main\assets\images\north_south_east_west_logo.png" />
     <Content Include="app\src\main\assets\images\car_top.png" />
     <Content Include="app\src\main\assets\images\car_top1.png" />
