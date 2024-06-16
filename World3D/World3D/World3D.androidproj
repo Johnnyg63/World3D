@@ -106,7 +106,9 @@
   <ItemDefinitionGroup>
     <GradlePackage>
       <ProjectDirectory>$(ProjectDir)app</ProjectDirectory>
-      <GradlePlugin>Gradle</GradlePlugin>
+      <GradlePlugin>gradle:7.4.2</GradlePlugin>
+      <GradleVersion>7.5</GradleVersion>
+      <GradleVersion>7.5</GradleVersion>
     </GradlePackage>
   </ItemDefinitionGroup>
   <ImportGroup Label="ExtensionSettings" />
@@ -133,6 +135,7 @@
     <Content Include="app\src\main\assets\images\TestLandScape.jpg" />
     <Content Include="app\src\main\assets\images\TestLandScape_small.png" />
     <Content Include="app\src\main\assets\maps\example1.city" />
+    <Content Include="app\src\main\assets\objectfiles\MercedesBenzGLS580.obj" />
     <Content Include="app\src\main\assets\objectfiles\mountains.obj" />
     <Content Include="app\src\main\assets\objectfiles\unitcube.obj" />
     <Content Include="app\src\main\assets\sounds\Sample_Test_44100.wav" />

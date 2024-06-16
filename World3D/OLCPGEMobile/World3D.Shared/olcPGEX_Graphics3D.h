@@ -13,6 +13,7 @@
 	+-------------------------------------------------------------+
 	|         OneLoneCoder Pixel Game Engine Extension            |
 	|                    3D Rendering - v0.5                      |
+	|                    PGE Mobile 2.0                           |
 	+-------------------------------------------------------------+
 
 	What is this?
@@ -262,7 +263,10 @@ namespace olc
 		//inline static void DrawSprite(olc::Sprite *sprite, olc::GFX2D::Transform2D &transform);
 
 	private:
-		static float* m_DepthBuffer;
+		// Static is evil folks
+		//static float* m_DepthBuffer;
+		static std::vector<float> vecDepthBuffer;
+
 	};
 }
 
@@ -666,10 +670,10 @@ namespace olc
 
 	void GFX3D::DrawTriangleWire(olc::GFX3D::triangle& tri, olc::Pixel col)
 	{
-		
-		pge->DrawTriangle((int32_t)tri.p[0].x, (int32_t)tri.p[0].y, 
-						  (int32_t)tri.p[1].x, (int32_t)tri.p[1].y, 
-						  (int32_t)tri.p[2].x, (int32_t)tri.p[2].y, col);
+
+		pge->DrawTriangle((int32_t)tri.p[0].x, (int32_t)tri.p[0].y,
+			(int32_t)tri.p[1].x, (int32_t)tri.p[1].y,
+			(int32_t)tri.p[2].x, (int32_t)tri.p[2].y, col);
 
 
 	}
@@ -680,6 +684,9 @@ namespace olc
 		int x3, int y3, float u3, float v3, float w3, olc::Sprite* spr)
 
 	{
+
+		size_t fPixelPos = 0;
+
 		if (y2 < y1)
 		{
 			std::swap(y1, y2);
@@ -772,13 +779,20 @@ namespace olc
 					tex_u = (1.0f - t) * tex_su + t * tex_eu;
 					tex_v = (1.0f - t) * tex_sv + t * tex_ev;
 					tex_w = (1.0f - t) * tex_sw + t * tex_ew;
-					if (tex_w > m_DepthBuffer[i * pge->ScreenWidth() + j])
+
+					// Some protection for off screen pixels
+					if (vecDepthBuffer.empty()) continue;
+					fPixelPos = (i * pge->ScreenWidth() + j);
+					if (fPixelPos >= vecDepthBuffer.size()) continue;
+
+
+					if (tex_w > vecDepthBuffer[i * pge->ScreenWidth() + j])
 					{
 						/*if (bMipMap)
 							pge->Draw(j, i, ((olc::GFX3D::MipMap*)spr)->Sample(tex_u / tex_w, tex_v / tex_w, tex_w));
 						else*/
 						if (pge->Draw(j, i, spr != nullptr ? spr->Sample(tex_u / tex_w, tex_v / tex_w) : olc::GREY))
-							m_DepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
+							vecDepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
 					}
 					t += tstep;
 				}
@@ -836,13 +850,13 @@ namespace olc
 					tex_v = (1.0f - t) * tex_sv + t * tex_ev;
 					tex_w = (1.0f - t) * tex_sw + t * tex_ew;
 
-					if (tex_w > m_DepthBuffer[i * pge->ScreenWidth() + j])
+					if (tex_w > vecDepthBuffer[i * pge->ScreenWidth() + j])
 					{
 						/*if(bMipMap)
 							pge->Draw(j, i, ((olc::GFX3D::MipMap*)spr)->Sample(tex_u / tex_w, tex_v / tex_w, tex_w));
 						else*/
 						if (pge->Draw(j, i, spr != nullptr ? spr->Sample(tex_u / tex_w, tex_v / tex_w) : olc::GREY))
-							m_DepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
+							vecDepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
 					}
 					t += tstep;
 				}
@@ -856,17 +870,23 @@ namespace olc
 
 	}
 
-	float* GFX3D::m_DepthBuffer = nullptr;
+	//float* GFX3D::m_DepthBuffer = nullptr;
+	std::vector<float> GFX3D::vecDepthBuffer;
 
 	void GFX3D::ConfigureDisplay()
 	{
-		m_DepthBuffer = new float[pge->ScreenWidth() * pge->ScreenHeight()] { 0 };
+		int32_t nBufferSize = pge->ScreenWidth() * pge->ScreenHeight() * sizeof(float);
+		vecDepthBuffer.resize(nBufferSize);
+		memset(vecDepthBuffer.data(), 0, vecDepthBuffer.size());
+
+		//m_DepthBuffer = new float[pge->ScreenWidth() * pge->ScreenHeight()] { 0 };
 	}
 
 
 	void GFX3D::ClearDepth()
 	{
-		memset(m_DepthBuffer, 0, pge->ScreenWidth() * pge->ScreenHeight() * sizeof(float));
+		memset(vecDepthBuffer.data(), 0, vecDepthBuffer.size());
+		//memset(m_DepthBuffer, 0, pge->ScreenWidth() * pge->ScreenHeight() * sizeof(float));
 	}
 
 	bool GFX3D::mesh::LoadOBJFile(std::string sFilename, bool bHasTexture)
@@ -1371,6 +1391,9 @@ namespace olc
 		uint32_t nFlags)
 
 	{
+
+		size_t fPixelPos = 0.0f; // need some protection against pixels that are off screen
+
 		if (y2 < y1)
 		{
 			std::swap(y1, y2); std::swap(x1, x2); std::swap(u1, u2); std::swap(v1, v2);	std::swap(w1, w2); std::swap(c1, c2);
@@ -1507,6 +1530,13 @@ namespace olc
 					pixel_b = col_b;
 					pixel_a = col_a;
 
+					// Some protection for off screen pixels
+					if (vecDepthBuffer.empty()) continue;
+					fPixelPos = (i * pge->ScreenWidth() + j);
+					if (fPixelPos >= vecDepthBuffer.size()) continue;
+
+
+
 					if (nFlags & GFX3D::RENDER_TEXTURED)
 					{
 						if (spr != nullptr)
@@ -1521,9 +1551,10 @@ namespace olc
 
 					if (nFlags & GFX3D::RENDER_DEPTH)
 					{
-						if (tex_w > m_DepthBuffer[i * pge->ScreenWidth() + j])
+
+						if (tex_w > vecDepthBuffer[i * pge->ScreenWidth() + j])
 							if (pge->Draw(j, i, olc::Pixel(uint8_t(pixel_r * 1.0f), uint8_t(pixel_g * 1.0f), uint8_t(pixel_b * 1.0f), uint8_t(pixel_a * 1.0f))))
-								m_DepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
+								vecDepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
 					}
 					else
 					{
@@ -1622,6 +1653,10 @@ namespace olc
 					pixel_b = col_b;
 					pixel_a = col_a;
 
+					if (vecDepthBuffer.empty()) continue;
+					fPixelPos = (i * pge->ScreenWidth() + j);
+					if (fPixelPos >= vecDepthBuffer.size()) continue;
+
 					if (nFlags & GFX3D::RENDER_TEXTURED)
 					{
 						if (spr != nullptr)
@@ -1636,9 +1671,9 @@ namespace olc
 
 					if (nFlags & GFX3D::RENDER_DEPTH)
 					{
-						if (tex_w > m_DepthBuffer[i * pge->ScreenWidth() + j])
+						if (tex_w > vecDepthBuffer[i * pge->ScreenWidth() + j])
 							if (pge->Draw(j, i, olc::Pixel(uint8_t(pixel_r * 1.0f), uint8_t(pixel_g * 1.0f), uint8_t(pixel_b * 1.0f), uint8_t(pixel_a * 1.0f))))
-								m_DepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
+								vecDepthBuffer[i * pge->ScreenWidth() + j] = tex_w;
 					}
 					else
 					{

@@ -12,8 +12,21 @@ android {
     compileSdkVersion 29
     buildToolsVersion '34.0.0'
 
+     defaultConfig {
+
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk 29
+        multiDexEnabled true
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++17'
+            }
+        }
+    }
+
     defaultConfig.with {
-        applicationId = "com.World3D"
+        applicationId = applicationId = "com.World3D"
         minSdkVersion 21
         targetSdkVersion 29
     }
